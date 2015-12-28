@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rp:ObjectSet xmlns:rp="http://www.soasta.com/services/repository">
+  <Object type="alert" schemaVersion="9081" name="blah1 copy2" path="/">
+    <Body>
+      <Alert severity="INFO" xmlns="http://www.soasta.com/services/repository">
+        <Event>
+          <MeasurementEvent appliesTo="all">
+            <MeasurementRules>
+              <MeasurementRule>
+                <Type type="timer">
+                  <Percentile>50</Percentile>
+                </Type>
+                <SubType>pageLoad</SubType>
+                <Operator>gt</Operator>
+                <Value>2</Value>
+              </MeasurementRule>
+            </MeasurementRules>
+            <MovingTimeWindowRule>5</MovingTimeWindowRule>
+            <BetweenTime>
+              <Start>0:00</Start>
+              <End>24:00</End>
+              <Timezone>America/Los_Angeles</Timezone>
+            </BetweenTime>
+          </MeasurementEvent>
+        </Event>
+        <Action>
+          <NotifyUser>
+            <To type="ref">
+              <Value>1</Value>
+            </To>
+            <Subject>[{%% constant:severity %%}] {%% constant:alertName %%} </Subject>
+            <Message>Timer Page Load Time  {%% timer:pageLoad:50:text %%} is greater than 2ms</Message>
+          </NotifyUser>
+        </Action>
+      </Alert>
+    </Body>
+    <BinaryData />
+    <Description></Description>
+    <Attributes>
+      <Attribute name="active">
+        <Value>true</Value>
+      </Attribute>
+      <Attribute name="version">
+        <Value>2</Value>
+      </Attribute>
+    </Attributes>
+    <References>
+      <Reference id="601" internalID="0" name="domain for Case 89983" type="domain" />
+      <Reference id="1" internalID="1" name="SOASTA" type="user" />
+    </References>
+  </Object>
+</rp:ObjectSet>
